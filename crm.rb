@@ -62,9 +62,11 @@ class CRM
     print "Enter the id of the user you would like to modify:"      #Not making changes.
     modify_id = gets.chomp.to_i
     contact = @rolodex.modify_contact(modify_id)
+    puts contact
   end
 
   def delete_contact
+
     print "Enter the id of the user you would like to delete:"
       delete_id = gets.chomp
     print "Are you sure? Write yes or no."
@@ -74,18 +76,17 @@ class CRM
     else
       puts "Contact has not been deleted."
     end
-
   end
 
+
   def display_by_attribute
-    print "Please input the number of the attribute you would like to change:"
+    print "Please input the number of the attributes you would like to view:"
     print "1 -- First Name"
     print "2 -- Last Name"
     print "3 -- Email"
     print "4 -- Notes"
-    attribute_id = gets.chomp
-    att = @rolodex.attribute_modify(attribute_id)
-
+    attribute_id = gets.chomp.to_i
+    att = @rolodex.attribute_show(attribute_id)
   end
 
 end

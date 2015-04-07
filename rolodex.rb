@@ -52,8 +52,17 @@ class Rolodex   # => This is the class that helps us hold the contacts and conta
       end
     end
 
-  def attribute_modify(attribute_id)
-    @contacts.find do |att|
+  def attribute_show(attribute_id)
+    if attribute_id == 1
+      puts "#{@first_name}"
+    elsif attribute_id == 2
+      puts "#{@last_name}"
+    elsif attribute_id == 3
+      puts "#{@email}"
+    elsif attribute_id == 4
+      puts "#{@note}"
+    else
+      puts "Invalid input."
     end
   end
 end
