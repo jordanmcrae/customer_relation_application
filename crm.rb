@@ -60,9 +60,8 @@ class CRM
 
   def modify_contact
     print "Enter the id of the user you would like to modify:"      #Not making changes.
-    modify_id = gets.chomp.to_i
-    contact = @rolodex.modify_contact(modify_id)
-    puts contact
+    contact_id = gets.chomp.to_i
+    @rolodex.modify_contact(contact_id)
   end
 
   def delete_contact
