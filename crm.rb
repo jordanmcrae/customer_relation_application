@@ -59,7 +59,7 @@ class CRM
   end
 
   def modify_contact
-    print "Enter the id of the user you would like to modify:"      #Not making changes.
+    print "Enter the id of the user you would like to modify:"
     contact_id = gets.chomp.to_i
     @rolodex.modify_contact(contact_id)
   end
@@ -79,13 +79,11 @@ class CRM
 
 
   def display_by_attribute
-    print "Please input the number of the attributes you would like to view:"
-    print "1 -- First Name"
-    print "2 -- Last Name"
-    print "3 -- Email"
-    print "4 -- Notes"
-    attribute_id = gets.chomp.to_i
-    att = @rolodex.attribute_show(attribute_id)
+    print "Please input the attribute you would like to view the contact list for (e.g. firstname, lastname, email, notes):"
+    attribute = gets.chomp.downcase
+    print "Please input the phrase you would like to search for #{attribute}:"
+    attribute_phrase = gets.chomp
+    @rolodex.attribute_show(attribute_phrase)
   end
 
 end

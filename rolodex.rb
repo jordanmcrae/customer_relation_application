@@ -2,7 +2,7 @@ class Rolodex   # => This is the class that helps us hold the contacts and conta
 
   def initialize
     @contacts = []
-    @id = 1
+    @id = 0
   end
 
   def add_contact(contact)
@@ -50,17 +50,30 @@ class Rolodex   # => This is the class that helps us hold the contacts and conta
       end
     end
 
-  def attribute_show(attribute_id)
-    if attribute_id == 1
-      puts "#{@first_name}"
-    elsif attribute_id == 2
-      puts "#{@last_name}"
-    elsif attribute_id == 3
-      puts "#{@email}"
-    elsif attribute_id == 4
-      puts "#{@note}"
+  def attribute_show(attribute_phrase)
+
+    if attribute == "firstname"
+      @contacts.find do |x|
+      x.first_name = attribute_phrase
+      end
+
+    elsif attribute == "lastname"
+      @contacts.find do |x|
+      x.last_name = attribute_phrase
+      end
+
+    elsif attribute == "email"
+      @contacts.find do |x|
+      x.email = attribute_phrase
+      end
+
+    elsif attribute == "notes"
+      @contacts.find do |x|
+      x.notes = attribute_phrase
+      end
     else
-      puts "Invalid input."
+      puts "Invalid attribute."
     end
+
   end
 end
