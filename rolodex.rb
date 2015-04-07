@@ -1,5 +1,7 @@
 class Rolodex   # => This is the class that helps us hold the contacts and contain them and organize them
 
+  attr_reader :contacts
+
   def initialize
     @contacts = []
     @id = 0
@@ -50,27 +52,30 @@ class Rolodex   # => This is the class that helps us hold the contacts and conta
       end
     end
 
-  def attribute_show(attribute_phrase)
-
-    if attribute == "firstname"
-      @contacts.find do |x|
-      x.first_name = attribute_phrase
+    def search(query)
+      re = /#{query}/i
+      @contacts.select do |contact|
+        contact.first_name =~ re or contact.last_name =~ re or
+        contact.email =~ re or contact.note =~ re
       end
+    end
 
-    elsif attribute == "lastname"
-      @contacts.find do |x|
-      x.last_name = attribute_phrase
-      end
+  def attribute_show(contact_id, attribute_phrase)
 
-    elsif attribute == "email"
-      @contacts.find do |x|
-      x.email = attribute_phrase
-      end
+    contact = find(contact_id)
 
-    elsif attribute == "notes"
-      @contacts.find do |x|
-      x.notes = attribute_phrase
-      end
+
+    if attribute_phrase == "firstname"
+      puts contact
+
+    elsif attribute_phrase == "lastname"
+      puts contact
+
+    elsif attribute_phrase == "email"
+      puts contact
+
+    elsif attribute_phrase == "notes"
+      puts contact
     else
       puts "Invalid attribute."
     end

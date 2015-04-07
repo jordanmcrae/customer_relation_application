@@ -1,5 +1,6 @@
 require_relative 'contact'
 require_relative 'rolodex'
+require 'faker'
 
 class CRM
   def self.run  # => class methods always have self
@@ -9,15 +10,19 @@ class CRM
 
   def initialize
     @rolodex = Rolodex.new
+    100.times do
+      @rolodex.add_contact(Contact.new(Faker::Name.first_name, Faker::Name.last_name, Faker::Internet.email, Faker::Hacker.say_something_smart))
+    end
   end
 
   def print_main_menu
     puts "[1] Add new contact"
     puts "[2] Modify an existing contact"
     puts "[3] Delete a contact"
-    puts "[4] Display a contact"
-    puts "[5] Display an attribute"
-    puts "[6] Exit"
+    puts "[4] Display all"
+    puts "[5] Display a contact"
+    puts "[6] Search"
+    puts "[0] Exit"
     puts "Enter a selection"
   end
 
@@ -25,9 +30,10 @@ class CRM
     add_new_contact if selection == 1
     modify_contact if selection == 2
     delete_contact if selection == 3
-    display_contact if selection == 4
-    display_by_attribute if selection == 5
-    exit if selection == 6
+    display_all_contacts if selection == 4
+    display_contact if selection == 5
+    search if selection == 6
+    exit if selection == 0
   end
 
   def main_menu
@@ -64,8 +70,11 @@ class CRM
     @rolodex.modify_contact(contact_id)
   end
 
-  def delete_contact
+  def display_all_contacts
+    puts @rolodex.contacts
+  end
 
+  def delete_contact
     print "Enter the id of the user you would like to delete:"
       contact_id = gets.chomp.to_i
     print "Are you sure? Write yes or no."
@@ -77,13 +86,10 @@ class CRM
     end
   end
 
-
-  def display_by_attribute
-    print "Please input the attribute you would like to view the contact list for (e.g. firstname, lastname, email, notes):"
-    attribute = gets.chomp.downcase
-    print "Please input the phrase you would like to search for #{attribute}:"
-    attribute_phrase = gets.chomp
-    @rolodex.attribute_show(attribute_phrase)
+  def search
+    print "Enter the query:"
+    query = gets.chomp
+    puts @rolodex.search(query)
   end
 
 end
