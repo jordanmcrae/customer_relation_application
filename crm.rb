@@ -68,11 +68,11 @@ class CRM
   def delete_contact
 
     print "Enter the id of the user you would like to delete:"
-      delete_id = gets.chomp
+      contact_id = gets.chomp.to_i
     print "Are you sure? Write yes or no."
       verify = gets.chomp.upcase
     if verify == "YES"
-      contact_delete = @rolodex.contact_delete(delete_id)
+      @rolodex.contact_delete(contact_id)
     else
       puts "Contact has not been deleted."
     end

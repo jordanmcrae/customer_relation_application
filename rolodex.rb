@@ -2,7 +2,7 @@ class Rolodex   # => This is the class that helps us hold the contacts and conta
 
   def initialize
     @contacts = []
-    @id = 1000
+    @id = 1
   end
 
   def add_contact(contact)
@@ -46,9 +46,9 @@ class Rolodex   # => This is the class that helps us hold the contacts and conta
       end
   end
 
-    def contact_delete(delete_id)
+    def contact_delete(contact_id)
       @contacts.delete_if do |x|
-        x == delete_id
+        x.id == contact_id
       end
     end
 
